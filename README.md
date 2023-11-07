@@ -2,6 +2,8 @@ The simplest and most practical Node.js backend template, suitable for quickly s
 
 ## Run the project
 
+`pnpm i`
+
 `pnpm dev`
 
 ## DB: NEDB
