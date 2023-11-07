@@ -10,6 +10,11 @@ The simplest and most practical Node.js backend template, suitable for quickly s
 
 All db operations are in `db.js`. And data is under `./data`
 
+- `db_connect` to create and connect db
+- `db_insert` to add data
+- `db_find` to return array of data
+- `db_remove` to remove data
+
 ## API
 
 You can write backend APIs in `index.js`
