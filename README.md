@@ -15,3 +15,7 @@ You can write backend APIs in `index.js`
 ## Session
 
 All sessions store under the `./sessions`
+
+## Static File
+
+Please place all static files under `./public`. And use url `/static/...` to access.
