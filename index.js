@@ -20,7 +20,7 @@ if (!fs.existsSync(directoryPath)) {
 
 const app = express();
 
-const allowOrigin = [];
+const allowOrigin = ["http://localhost:5173"];
 
 const corsOptions = {
   origin: allowOrigin,
