@@ -21,3 +21,7 @@ All sessions store under the `./sessions`
 ## Static File
 
 Please place all static files under `./public`. And use url `/static/...` to access.
+
+## Template Code
+
+You can use it like template repo into new repos.
