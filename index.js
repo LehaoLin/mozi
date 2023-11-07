@@ -1,10 +1,22 @@
 import express from "express";
 import cors from "cors";
 import dayjs from "dayjs";
+import fs from "fs";
 
 import { db_connect, db_insert, db_find, db_remove } from "./db.js";
 
 import cookieParser from "cookie-parser";
+
+const directoryPath = "./data";
+
+// Check if the directory exists
+if (!fs.existsSync(directoryPath)) {
+  // If it doesn't exist, create the directory
+  fs.mkdirSync(directoryPath);
+  console.log(`${directoryPath} created successfully.`);
+} else {
+  console.log(`${directoryPath} already exists.`);
+}
 
 const app = express();
 
@@ -43,6 +55,7 @@ let db;
 
 app.get("/", async (req, res) => {
   let ctx = req.body;
+  req.session.uid = "x";
   let now = dayjs().format();
   ctx.now = now;
   return res.json(ctx);
