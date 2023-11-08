@@ -25,9 +25,15 @@ export const db_insert = async (db, data) => {
   }
 };
 
-export const db_find = async (db, data) => {
-  const docs = await db.findAsync(data);
-  return docs;
+// sort {key: -1}
+export const db_find = async (db, data, sort = {}) => {
+  if (Object.keys(sort).length == 0) {
+    const docs = await db.findAsync(data);
+    return docs;
+  } else {
+    const docs = await db.findAsync(data).sort(sort);
+    return docs;
+  }
 };
 
 export const db_remove = async (db, data) => {
