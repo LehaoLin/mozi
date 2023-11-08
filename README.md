@@ -1,5 +1,7 @@
 The simplest and most practical Node.js backend template, suitable for quickly setting up small-scale backends.
 
+最爽的方式起个 Nodejs 小后端
+
 ## Run the project
 
 `pnpm i`
