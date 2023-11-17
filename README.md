@@ -17,6 +17,10 @@ All db operations are in `db.js`. And data is under `./data`
 - `db_find` to return array of data
 - `db_remove` to remove data
 
+How to export the data to json?
+
+- `export.js` to modify `name` variable and `pnpm export`
+
 ## API
 
 You can write backend APIs in `index.js`

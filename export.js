@@ -10,6 +10,6 @@ export const db_export = async (db, name) => {
 
 (async () => {
   let name = "data";
-  let db = db_connect(name);
+  let db = await db_connect(name);
   await db_export(db, name);
 })();
