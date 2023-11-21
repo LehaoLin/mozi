@@ -3,9 +3,14 @@ import cors from "cors";
 import dayjs from "dayjs";
 import fs from "fs";
 
+import { Server } from "socket.io";
+import { createServer } from "node:http";
+
 import { db_connect, db_insert, db_find, db_remove } from "./db.js";
 
 import cookieParser from "cookie-parser";
+
+import getPort, { portNumbers } from "get-port";
 
 const directoryPath = "./data";
 
@@ -19,6 +24,7 @@ if (!fs.existsSync(directoryPath)) {
 }
 
 const app = express();
+const server = createServer(app);
 
 const allowOrigin = ["http://localhost:5173"];
 
@@ -27,8 +33,14 @@ const corsOptions = {
   credentials: true,
 };
 
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
+});
+
 app.use(cors(corsOptions));
-const port = 5555;
+const port = await getPort({ port: portNumbers(5555, 5600) });
 app.use(express.json());
 app.use("/static", express.static("public"));
 app.use(cookieParser());
@@ -48,10 +60,11 @@ app.use(
   })
 );
 
-let db;
-(async () => {
-  db = await db_connect("data");
-})();
+// let db;
+// (async () => {
+//   db = await db_connect("data");
+// })();
+const db = await db_connect("data");
 
 app.get("/", async (req, res) => {
   let ctx = req.body;
@@ -66,6 +79,13 @@ app.post("/", async (req, res) => {
   return res.json(ctx);
 });
 
-app.listen(port, () => {
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
+
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
