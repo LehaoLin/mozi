@@ -12,6 +12,9 @@ import cookieParser from "cookie-parser";
 
 import getPort, { portNumbers } from "get-port";
 
+import { api_config } from "./api.js";
+import { socket_config } from "./api_socket.js";
+
 const directoryPath = "./data";
 
 // Check if the directory exists
@@ -23,24 +26,24 @@ if (!fs.existsSync(directoryPath)) {
   console.log(`${directoryPath} already exists.`);
 }
 
-const app = express();
+let app = express();
 const server = createServer(app);
 
-const allowOrigin = ["http://localhost:5173"];
+const port = await getPort({ port: portNumbers(5555, 5600) });
+const allowOrigin = ["http://localhost:5173", `http://localhost:${port}`];
 
 const corsOptions = {
   origin: allowOrigin,
   credentials: true,
 };
 
-const io = new Server(server, {
+let io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: allowOrigin,
   },
 });
 
 app.use(cors(corsOptions));
-const port = await getPort({ port: portNumbers(5555, 5600) });
 app.use(express.json());
 app.use("/static", express.static("public"));
 app.use(cookieParser());
@@ -60,31 +63,10 @@ app.use(
   })
 );
 
-// let db;
-// (async () => {
-//   db = await db_connect("data");
-// })();
 const db = await db_connect("data");
 
-app.get("/", async (req, res) => {
-  let ctx = req.body;
-  req.session.uid = "x";
-  let now = dayjs().format();
-  ctx.now = now;
-  return res.json(ctx);
-});
-
-app.post("/", async (req, res) => {
-  let ctx = req.body;
-  return res.json(ctx);
-});
-
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
+app = api_config(app, db);
+io = socket_config(io, db);
 
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);

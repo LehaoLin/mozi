@@ -23,7 +23,8 @@ How to export the data to json?
 
 ## API
 
-You can write backend APIs in `index.js`
+You can write backend APIs in `api.js`
+And socket APIs in `socket_api.js`
 
 ## Session
 
