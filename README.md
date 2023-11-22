@@ -34,6 +34,14 @@ All sessions store under the `./sessions`
 
 Please place all static files under `./public`. And use url `/static/...` to access.
 
+## Full stack Development
+
+`pnpm vue`
+
+It will create a frontend dir with a Vue Vite project named `frontend`.
+
+And you should modify the `api.js` to cancel the comment code beside `// for vue project inside`
+
 ## Template Code
 
 You can use it like template repo into new repos.

@@ -1,4 +1,11 @@
 import dayjs from "dayjs";
+import { db_insert, db_find, db_remove } from "./db.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import express from "express";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const api_config = (app, db) => {
   app.get("/", async (req, res) => {
@@ -6,12 +13,15 @@ export const api_config = (app, db) => {
     req.session.uid = "x";
     let now = dayjs().format();
     ctx.now = now;
-    return res.json(ctx);
+    res.json(ctx);
   });
+
+  //   for vue project inside
+  //   app.use("/", express.static(path.join(__dirname, "frontend/dist")));
 
   app.post("/", async (req, res) => {
     let ctx = req.body;
-    return res.json(ctx);
+    res.json(ctx);
   });
 
   return app;

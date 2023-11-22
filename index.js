@@ -45,7 +45,7 @@ let io = new Server(server, {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use("/static", express.static("public"));
+app.use("/static", express.static("./public"));
 app.use(cookieParser());
 
 import session from "express-session";
