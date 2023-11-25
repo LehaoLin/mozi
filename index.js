@@ -59,6 +59,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     reapInterval: -1,
+    ttl: 60 * 60 * 24,
     cookie: { maxAge: 60 * 60 * 24 * 365 },
   })
 );
