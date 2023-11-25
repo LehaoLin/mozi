@@ -48,10 +48,10 @@ app.use(express.json());
 app.use("/static", express.static("./public"));
 app.use(cookieParser());
 
+// for session
 import session from "express-session";
 import FileStore from "session-file-store";
 const FileStoreInstance = FileStore(session);
-
 app.use(
   session({
     store: new FileStoreInstance(),
@@ -64,8 +64,10 @@ app.use(
   })
 );
 
+// db connect
 const db = await db_connect("data");
 
+// api config
 app = api_config(app, db);
 io = socket_config(io, db);
 
