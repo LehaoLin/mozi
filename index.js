@@ -15,6 +15,10 @@ import getPort, { portNumbers } from "get-port";
 import { api_config } from "./api.js";
 import { socket_config } from "./api_socket.js";
 
+import { execSync } from "child_process";
+
+execSync("pnpm build");
+
 const directoryPath = "./data";
 
 // Check if the directory exists

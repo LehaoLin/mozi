@@ -17,9 +17,11 @@
   "nodemonConfig": {
     "ignore": [
       "./data",
-      "./sessions"
+      "./sessions",
+      "./frontend/dist",
+      "./frontend/vite.config.js.*.mjs"
     ],
-    "delay": 500
+    "delay": 800
   },
   "dependencies": {
     "@seald-io/nedb": "^4.0.2",
