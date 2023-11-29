@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "export": "node export.js",
-    "vue": "zx ./init_vue.js"
+    "vue": "zx ./init_vue.js",
+    "build": "zx ./build_vue.js"
   },
   "keywords": [],
   "author": "",
