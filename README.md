@@ -46,6 +46,8 @@ And you should modify the `api.js` to cancel the comment code beside `// for vue
 
 All Python files should be under `pyscript`.
 
+Run shell `setup.sh` to setup the python enviroment.
+
 And please write python functions in `server.py`
 
 To call the function, write in the `api.js` use the `call_py()` function.
