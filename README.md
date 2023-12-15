@@ -42,6 +42,14 @@ It will create a frontend dir with a Vue Vite project named `frontend`.
 
 And you should modify the `api.js` to cancel the comment code beside `// for vue project inside`
 
+## Run Python file
+
+All Python files should be under `pyscript`.
+
+And please write python functions in `server.py`
+
+To call the function, write in the `api.js` use the `call_py()` function.
+
 ## Template Code
 
 You can use it like template repo into new repos.

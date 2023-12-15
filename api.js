@@ -3,6 +3,7 @@ import { db_insert, db_find, db_remove } from "./db.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import express from "express";
+import { call_py } from "./pyfunc.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +14,7 @@ export const api_config = (app, db) => {
     req.session.uid = "x";
     let now = dayjs().format();
     ctx.now = now;
+    await call_py("/", { test: 1 });
     res.json(ctx);
   });
 

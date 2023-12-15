@@ -14,8 +14,16 @@ import getPort, { portNumbers } from "get-port";
 
 import { api_config } from "./api.js";
 import { socket_config } from "./api_socket.js";
+import { call_py } from "./pyfunc.js";
 
-import { execSync } from "child_process";
+import { execSync, spawn } from "child_process";
+import { $ } from "zx";
+
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 execSync("pnpm build");
 
@@ -75,6 +83,15 @@ const db = await db_connect("data");
 app = api_config(app, db);
 io = socket_config(io, db);
 
+// connect to python
+const child = spawn("python3 server.py", {
+  stdio: "inherit",
+  shell: true,
+  cwd: `${__dirname}/pyscript`,
+});
+
+// call_py("/", { hello: "world" });
+
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
