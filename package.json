@@ -26,6 +26,7 @@
   "dependencies": {
     "@seald-io/nedb": "^4.0.2",
     "axios": "^1.6.2",
+    "chalk": "^5.3.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",

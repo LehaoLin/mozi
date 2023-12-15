@@ -1,11 +1,12 @@
 import Datastore from "@seald-io/nedb";
 import fs from "fs/promises";
+import chalk from "chalk";
 
 const check_create = async (name) => {
   let filePath = `./data/${name}.db`;
   try {
     await fs.access(filePath, fs.constants.F_OK);
-    console.log(`${name}.db file exists`);
+    console.log(chalk.blue(`${name}.db file exists`));
   } catch {
     await fs.writeFile(filePath, "");
   }

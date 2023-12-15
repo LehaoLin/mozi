@@ -21,6 +21,7 @@ import fileUpload from "express-fileupload";
 
 import path from "path";
 import { fileURLToPath } from "url";
+import chalk from "chalk";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,9 +34,9 @@ const directoryPath = "./data";
 if (!fs.existsSync(directoryPath)) {
   // If it doesn't exist, create the directory
   fs.mkdirSync(directoryPath);
-  console.log(`${directoryPath} created successfully.`);
+  console.log(chalk.blue(`${directoryPath} created successfully.`));
 } else {
-  console.log(`${directoryPath} already exists.`);
+  console.log(chalk.blue(`${directoryPath} already exists.`));
 }
 
 let app = express();
@@ -91,8 +92,6 @@ const child = spawn("python3 server.py", {
   cwd: `${__dirname}/pyscript`,
 });
 
-// call_py("/", { hello: "world" });
-
 server.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(chalk.blue(`Server is running on http://localhost:${port}`));
 });

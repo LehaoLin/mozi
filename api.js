@@ -14,6 +14,7 @@ export const api_config = (app, db) => {
     req.session.uid = "x";
     let now = dayjs().format();
     ctx.now = now;
+    console.log(now);
     await call_py("/", { test: 1 });
     res.json(ctx);
   });
