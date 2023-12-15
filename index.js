@@ -72,7 +72,7 @@ app.use(
     secret: "mozi mozi mozi",
     resave: true,
     saveUninitialized: true,
-    reapInterval: -1,
+    reapInterval: 60 * 60,
     ttl: 60 * 60 * 24,
     cookie: { maxAge: 60 * 60 * 24 * 365 },
   })
@@ -93,5 +93,5 @@ const child = spawn("python3 server.py", {
 });
 
 server.listen(port, () => {
-  console.log(chalk.blue(`Server is running on http://localhost:${port}`));
+  console.log(chalk.bold.blue(`Server is running on http://localhost:${port}`));
 });
