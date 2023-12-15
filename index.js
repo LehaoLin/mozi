@@ -17,7 +17,7 @@ import { socket_config } from "./api_socket.js";
 import { call_py } from "./pyfunc.js";
 
 import { execSync, spawn } from "child_process";
-import { $ } from "zx";
+import fileUpload from "express-fileupload";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -59,6 +59,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/static", express.static("./public"));
 app.use(cookieParser());
+app.use(fileUpload());
 
 // for session
 import session from "express-session";
