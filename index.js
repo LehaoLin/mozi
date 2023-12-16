@@ -60,7 +60,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/static", express.static("./public"));
 app.use(cookieParser());
-app.use(fileUpload());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: `${__dirname}/tmp/`,
+  })
+);
 
 // for session
 import session from "express-session";
