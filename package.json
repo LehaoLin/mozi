@@ -19,7 +19,8 @@
       "./data",
       "./sessions",
       "./frontend/dist",
-      "./frontend/vite.config.js.*.mjs"
+      "./frontend/vite.config.js.*.mjs",
+      "./upload"
     ],
     "delay": 800
   },
